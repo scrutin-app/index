@@ -5,3 +5,8 @@ title = 'Scrutin'
 [params]
   project_name = "Scrutin"
   project_tagline = "/ˈskɹuːtɪn/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

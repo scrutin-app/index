@@ -2,12 +2,7 @@
 <html lang="{{ .Site.Language.Lang }}">
 {{ partial "head" . }}
 <body class="container mx-auto">
-  <header>
-    <h1>{{ $.Site.Params.project_name | markdownify }}</h1>
-    <h2>
-      {{ $.Site.Params.project_tagline | markdownify }}
-    </h2>
-  </header>
+  {{ partial "header" . }}
   {{ block "main" . }}{{ end }}
   {{ partial "footer" . }}
 </body>
