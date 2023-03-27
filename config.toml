@@ -1,0 +1,7 @@
+baseURL = 'https://scrutin.app/'
+languageCode = 'en-us'
+title = 'Scrutin'
+
+[params]
+  project_name = "Scrutin"
+  project_tagline = "/ˈskɹuːtɪn/"

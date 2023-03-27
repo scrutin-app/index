@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+{{ partial "head" . }}
+<body>
+  <header>
+    <h1>{{ $.Site.Params.project_name | markdownify }}</h1>
+    <h2>
+      {{ $.Site.Params.project_tagline | markdownify }}
+    </h2>
+  </header>
+  {{ block "main" . }}{{ end }}
+  {{ partial "footer" . }}
+</body>
+</html>
