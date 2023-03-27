@@ -1,15 +1,17 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-<ul>
-{{ $pages := .Pages }}
-{{ range $pages.ByPublishDate.Reverse }}
-  <li>
-    {{ $dateFormat := $.Site.Params.dateFormat | default "Jan 2, 2006" }}
-    {{ .PublishDate.Format $dateFormat }}
-    <a href="{{ .Permalink }}">
-      {{ .Title }}
-    </a>
-  </li>        
-{{ end }}
-</ul>
+<div class="prose lg:prose-xl">
+  <h2 class="pt-10">Draft articles</h2>
+  <ul>
+  {{ $pages := .Pages }}
+  {{ range $pages.ByPublishDate.Reverse }}
+    <li>
+      <h3>
+        <a href="{{ .Permalink }}">
+          {{ .Title }}
+        </a>
+      </h3>
+    </li>
+  {{ end }}
+  </ul>
+</div>
 {{ end }}
