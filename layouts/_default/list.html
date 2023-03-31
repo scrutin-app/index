@@ -1,17 +1,30 @@
 {{ define "main" }}
-<div class="prose lg:prose-xl">
-  <h2 class="pt-10">Draft articles</h2>
-  <ul>
+
+<div class="grid
+  lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2
+  pt-10">
   {{ $pages := .Pages }}
   {{ range $pages.ByPublishDate.Reverse }}
-    <li>
+
+    <!-- Card -->
+    <div>
+
+      <!-- Header image ? -->
+
       <h3>
         <a href="{{ .Permalink }}">
           {{ .Title }}
         </a>
       </h3>
-    </li>
+
+      <div>
+        Text content
+        {{ .Title }}
+      </div>
+
+    </div>
+
   {{ end }}
-  </ul>
 </div>
+
 {{ end }}
