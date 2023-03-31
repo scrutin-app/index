@@ -1888,6 +1888,10 @@ html {
   display: block;
 }
 
+.flex {
+  display: flex;
+}
+
 .h-6 {
   height: 1.5rem;
 }
@@ -1926,9 +1930,28 @@ html {
   padding-top: 2.5rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .normal-case {
