@@ -1,5 +1,7 @@
 ---
 title: Architecture
+description: Data structures and state mutations (events) of the app
+date: 2023-04-05
 ---
 
 ## Philosophy

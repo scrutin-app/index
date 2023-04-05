@@ -1,5 +1,7 @@
 ---
-title: Voting list management
+title: Voting list
+description: How to manage and trust it
+date: 2023-03-31
 ---
 
 In verifiable elections, the voting list is publicly available.
