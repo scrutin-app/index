@@ -62,30 +62,81 @@ Objects are immutables, to update them we provide a new object and fill `previou
 
 ## Events
 
-Event are object creations or mutations, that need to follow specific rules
+Event are object creations or mutations, that need to follow specific rules.
 
-### Election events
+Exemple:
+
+```json
+{
+	"type": "election.create",
+	"object": {
+		// Election or Ballot object.
+		// Stringified, to have the hash reproducible
+	},
+	// objectId is the hash of the object.
+	// Used in electionId, previousId, ...
+	"objectId": "fcf7bad8b79c...",
+	// Array of signatures (depending of the type of event)
+	"signatures": [{
+		"publicKey": "3a9ccf1fc...",
+		"signature": "a9b0391f9c2..."
+	}]
+}
+```
 
 #### Election.create
 
+```json
+{
+	"type": "election.create",
+	// ...
+}
+```
 Create a new election.
 
-Fix the admin identity through `ownerPublicKey`
+Set the admin identity through `ownerPublicKey`
+
+This event is signed by `ownerPublicKey`.
+
+
+#### Ballot.create
+
+Create a ballot.
+
+Create a voter identity through `voterPublicKey`.
+
+`electionPublicKey = election.ownerPublicKey`
+
+The event is signed by `electionPublicKey`.
+
+#### Ballot.updateCiphertext
+
+Voting action. Update the ciphertext field.
+
+The event is signed by `voterPublicKey`.
+
+#### Ballot.updatePublicKey
+
+(Only for malleable elections)
+
+Update a voter identity.
+
+Allow the administrators to amend the voting list
+
+The event is signed by `electionPublicKey`.
 
 #### Election.partialDecryption
 
 Update an election's partialDecryptions.
 
-The partialDecryptions can be verified by anyone. This event doesn't need digital signatures (but is verified).
+The partialDecryptions can be verified by anyone.
+
+This event is unsigned (but is verifiable).
 
 #### Election.close
 
 Update an election's result
 
-The election result can be reproduced by anyone. This event doesn't need digital signatures (but is reproductible).
+The election result can be reproduced by anyone.
 
-### Ballot events
-
-#### Ballot.create
-#### Ballot.updateCiphertext
-#### Ballot.updatePublicKey
+This event is unsigned (but is reproductible).
