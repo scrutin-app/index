@@ -6,18 +6,15 @@
   {{ $pages := .Pages }}
   {{ range $pages.ByPublishDate.Reverse }}
 
-    <div class="card w-96 bg-base-100 shadow-xl">
-      <div class="card-body">
-        <h2 class="card-title">{{ .Title }}</h2>
-        <p>{{ .Description }} </p>
-        <p>{{ .Date | time.Format ":date_long" }} </p>
-        <a href="{{ .Permalink }}">
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Show</button>
-          </div>
-        </a>
+    <a href="{{ .Permalink }}">
+      <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card-body">
+          <h2 class="card-title">{{ .Title }}</h2>
+          <p>{{ .Description }} </p>
+          <p>{{ .Date | time.Format ":date_long" }} </p>
+        </div>
       </div>
-    </div>
+    </a>
 
   {{ end }}
 </div>
