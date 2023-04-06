@@ -1,17 +1,18 @@
 {{ define "main" }}
 
-<div class="grid
-  lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2
+<div class="grid gap-4
+  md:grid-cols-3 sm:grid-cols-2
+  h-full
   pt-10">
   {{ $pages := .Pages }}
   {{ range $pages.ByPublishDate.Reverse }}
 
     <a href="{{ .Permalink }}">
-      <div class="card w-96 bg-base-100 shadow-xl">
+      <div class="card h-full bg-base-100 shadow-xl">
         <div class="card-body">
           <h2 class="card-title">{{ .Title }}</h2>
           <p>{{ .Description }} </p>
-          <p>{{ .Date | time.Format ":date_long" }} </p>
+          <p class="text-gray-500">{{ .Date | time.Format ":date_long" }} </p>
         </div>
       </div>
     </a>
