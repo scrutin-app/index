@@ -12,7 +12,7 @@ The voter informations are not stored anywhere, thus cannot leak.
 
 If he wants, he can maintain a local database of user identities to only send credentials once.
 
-##### First approach: Local database
+#### First approach: Local database
 
 ```mermaid
 flowchart TD
@@ -51,18 +51,18 @@ flowchart TD
     D1 -->|read by| Voter
 ```
 
-##### Problem 1: Secrecy of voters' secret keys 
+#### Problem 1: Secrecy of voters' secret keys 
 
 Here secret keys are generated on the organizer device, then sent to voters, sometimes through many intermediates.
 We would prefer generating the secret keys on the voter's device and never move them.
 
-##### Problem 2: Staying up-to-date (cache invalidation)
+#### Problem 2: Staying up-to-date (cache invalidation)
 
 The problem with maintaining a local database of contacts identities is that it cannot be remotly edited.
 Users will loose their secrets. Some secrets will be stolen.
 We need mechanisms to deal with this.
 
-##### Second approach: Using an identity server
+#### Second approach: Using an identity server
 
 ```mermaid
 flowchart TD
