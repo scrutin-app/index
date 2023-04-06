@@ -1165,13 +1165,6 @@ html {
   flex-grow: 1;
 }
 
-.card-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
 .card figure {
   display: flex;
   align-items: center;
@@ -1418,41 +1411,6 @@ html {
   opacity: 1;
 }
 
-.btn-outline.btn-primary .badge {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--p) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--p) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--pc) / var(--tw-text-opacity));
-}
-
-.btn-outline.btn-primary .badge-outline {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--p) / var(--tw-border-opacity));
-  background-color: transparent;
-  --tw-text-opacity: 1;
-  color: hsl(var(--p) / var(--tw-text-opacity));
-}
-
-.btn-outline.btn-primary:hover .badge {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--pc) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--pc) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--p) / var(--tw-text-opacity));
-}
-
-.btn-outline.btn-primary:hover .badge.outline {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--pc) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--pf, var(--p)) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--pc) / var(--tw-text-opacity));
-}
-
 .btn:active:hover,
   .btn:active:focus {
   animation: none;
@@ -1470,27 +1428,6 @@ html {
 .btn:focus-visible {
   outline: 2px solid hsl(var(--nf));
   outline-offset: 2px;
-}
-
-.btn-primary {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--p) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--p) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--pc) / var(--tw-text-opacity));
-}
-
-.btn-primary:hover,
-    .btn-primary.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--pf, var(--p)) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--pf, var(--p)) / var(--tw-bg-opacity));
-}
-
-.btn-primary:focus-visible {
-  outline: 2px solid hsl(var(--p));
 }
 
 .btn.glass:hover,
@@ -1519,21 +1456,6 @@ html {
 
 .btn-ghost:focus-visible {
   outline: 2px solid currentColor;
-}
-
-.btn-outline.btn-primary {
-  --tw-text-opacity: 1;
-  color: hsl(var(--p) / var(--tw-text-opacity));
-}
-
-.btn-outline.btn-primary:hover,
-      .btn-outline.btn-primary.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--pf, var(--p)) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--pf, var(--p)) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--pc) / var(--tw-text-opacity));
 }
 
 .btn-disabled,
@@ -1651,10 +1573,6 @@ html {
   100% {
     background-position-y: 0;
   }
-}
-
-.drawer-toggle:focus-visible ~ .drawer-content .drawer-button.btn-primary {
-  outline: 2px solid hsl(var(--p));
 }
 
 .drawer-toggle:focus-visible ~ .drawer-content .drawer-button.btn-ghost {
@@ -2028,27 +1946,6 @@ html {
   width: 320px;
 }
 
-.btn-lg {
-  height: 4rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  min-height: 4rem;
-  font-size: 1.125rem;
-}
-
-.btn-square:where(.btn-lg) {
-  height: 4rem;
-  width: 4rem;
-  padding: 0px;
-}
-
-.btn-circle:where(.btn-lg) {
-  height: 4rem;
-  width: 4rem;
-  border-radius: 9999px;
-  padding: 0px;
-}
-
 .menu-horizontal {
   display: inline-flex;
   width: -moz-max-content;
@@ -2184,29 +2081,13 @@ html {
   margin: 0.5rem;
 }
 
-.m-10 {
-  margin: 2.5rem;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
-.ml-10 {
-  margin-left: 2.5rem;
-}
-
-.mr-10 {
-  margin-right: 2.5rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .mt-10 {
@@ -2233,20 +2114,12 @@ html {
   width: 1.5rem;
 }
 
-.w-96 {
-  width: 24rem;
-}
-
 .flex-1 {
   flex: 1 1 0%;
 }
 
 .flex-none {
   flex: none;
-}
-
-.justify-end {
-  justify-content: flex-end;
 }
 
 .gap-4 {
@@ -2288,10 +2161,6 @@ html {
   padding: 0.75rem;
 }
 
-.p-10 {
-  padding: 2.5rem;
-}
-
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -2325,11 +2194,6 @@ html {
 
 .normal-case {
   text-transform: none;
-}
-
-.text-gray-600 {
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 .text-gray-500 {
@@ -2574,9 +2438,5 @@ html {
 @media (min-width: 1024px) {
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .lg\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
