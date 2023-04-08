@@ -4,21 +4,7 @@ description: Data structures and state mutations (events) of the app
 date: 2023-04-05
 ---
 
-## Philosophy
-
-An append-only log of signed events.
-
-## Objects
-
-Objects have a `type` key, and are casted accordingly.
-
-```json
-{
-	"type": "election", // or ballot
-	"previousId": null,
-	// ...
-}
-```
+State mutations (creating elections, ballots, etc) is done through signed events.
 
 Objects are immutables, to update them we provide a new object and fill `previousId` with the id of the replaced object.
 
