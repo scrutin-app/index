@@ -18,8 +18,8 @@ Scrutin ship with a new credential authority:
 - Credentials are generated on users' devices, whenever possible.
 - New users don't have credentials yet. In this case Scrutin credential authority would generate credentials for them.
 - Anytime, users can update their credentials by new, locally generated, ones.
-They can do so by proving account ownership (by proving access to their email address or other authentication mechanism)
-- If user loses their key, they can upload new ones proving account ownership.
+	They can do so by proving account ownership (by email address or other authentication mechanism)
+- If user loses their key, they can also upload new ones by proving account ownership.
 
 ```mermaid
 flowchart TD
