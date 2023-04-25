@@ -1,6 +1,7 @@
 ---
 title: Architecture
 description: Data structures and state mutations (events) of the app
+draft: true
 date: 2023-04-05
 ---
 
