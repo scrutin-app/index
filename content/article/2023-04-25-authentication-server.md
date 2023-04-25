@@ -10,6 +10,7 @@ We take email as an example but it would be the same for mobile or OAuth/OpenID 
 #### When adding users
 
 1.
+
 After creating the election, the user send the list of authorized emails to the authentication server (can be done multiple times).
 
 ```json
@@ -23,6 +24,7 @@ After creating the election, the user send the list of authorized emails to the 
 ```
 
 2.
+
 The authentication server generate a new public key, used to manage those users.
 
 ```js
@@ -44,11 +46,13 @@ res.send({
 ```
 
 3.
+
 The user update the election's `adminIds` with the received userId, allowing the server to update  the election.
 
 #### Adding users
 
 1.
+
 The user click on "authenticate by email"
 The user fill his email
 
@@ -65,6 +69,7 @@ The user send a request to scrutin-auth-email with:
 ```
 
 2.
+
 The authentification server check if that email is allowed.
 
 If so, the authentification server generate a token and send it by email for verification.
@@ -87,9 +92,11 @@ res.send({ status: "unconfirmed" })
 ```
 
 3.
+
 When the user click on the link, the authentication server add the new `userId` to `election.voterIds`
 
 4.
+
 The user is redirected to the voting page.
 
 ---
