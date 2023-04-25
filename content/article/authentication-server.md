@@ -7,11 +7,9 @@ This is a draft of the authentication protocol.
 
 We take email as an example but it would be the same for mobile or OAuth/OpenID (mailing would be replaced by SMS and OAuth respectively)
 
-#### When adding users
+#### Adding users
 
-1.
-
-After creating the election, the user send the list of authorized emails to the authentication server (can be done multiple times).
+After creating the election, the **user** send the list of authorized emails to the authentication server (can be done multiple times).
 
 ```json
 {
@@ -23,9 +21,7 @@ After creating the election, the user send the list of authorized emails to the 
 }
 ```
 
-2.
-
-The authentication server generate a new public key, used to manage those users.
+The **authentication server** generate a new public key, used to manage those users.
 
 ```js
 let managerAccount = Account.new()
@@ -45,71 +41,71 @@ res.send({
 })
 ```
 
-3.
+The **user** update the election's `adminIds` with the received userId, allowing the server to update  the election.
 
-The user update the election's `adminIds` with the received userId, allowing the server to update  the election.
+#### Logging in (new user)
 
-#### Adding users
+The **voter** click on "Login by email"
+The voter fill his email.
+A new account (userId + secret) is generated on device.
 
-1.
-
-The user click on "authenticate by email"
-The user fill his email
-
-**If the user is already authenticated, see below**
-If the user isn't authenticated:
-The user generate a key pair
-The user send a request to scrutin-auth-email with:
+The voter to the authentication server:
 
 ```json
 {
+	"electionId": electionId,
 	"userId": account.userId,
-	email
+	"email": email
 }
 ```
 
-2.
+The authentification server then check if that email is authorized.
 
-The authentification server check if that email is allowed.
-
-If so, the authentification server generate a token and send it by email for verification.
+If so, the authentification server generate a verification token and send it by email.
 
 ```js
+app.post("/login", async (req, res) => {
+	let { email, userId, userToken } = req.body
 
+	await knex('users').insert({
+		email,
+		userId,
+		userToken
+	})
+	
+	let link = "https://email.auth.scrutin.app/verify/"
+	+ userId
+	+ "/"
+	+ userToken
 
-
-let link = "https://email.auth.scrutin.app/verify/"
-+ userId
-+ "/"
-+ userToken
-
-// TODO: Warn the user NOT TO CLICK if he did not made the request
-let emailBody = `Click here: ${link}`
-
-sendEmail(email, "Verify your email", `Click here: ${link}`)
-
-res.send({ status: "unconfirmed" })
+	// TODO: Warn the user NOT TO CLICK if he did not made the request
+	sendEmail(email, "Verify your email", `Click here: ${link}`)
+	
+	res.send({ status: "unconfirmed" })
+})
 ```
-
-3.
 
 When the user click on the link, the authentication server add the new `userId` to `election.voterIds`
 
-4.
+```js
+app.get("/verify/:userId/:userToken", async (req, res) => {
+	if (verifyUser()) {
+		updateElectionVoters()
+	}
+})
+```
 
 The user is redirected to the voting page.
 
----
-**If the user is already authenticated**
-1b.
-The user already has an account (userId + secret) associated with that email.
+#### Logging in (existing user)
 
 Voter to authentication server:
 
 ```json
 {
+	"electionId": electionId,
 	"userId": account.userId,
-	"email": "user@domain"
+	"email": email
 }
 ```
 
