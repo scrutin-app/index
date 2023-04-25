@@ -1,5 +1,5 @@
 ---
-title: Voting list (new)
+title: Voting list
 description: How to avoid ballot stuffing
 date: 2023-04-13
 ---

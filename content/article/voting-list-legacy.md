@@ -1,6 +1,7 @@
 ---
 title: Voting list (legacy)
 description: An attempt at decentralized credential authorities
+draft: true
 date: 2023-03-01
 ---
 
