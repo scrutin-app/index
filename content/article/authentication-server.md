@@ -7,27 +7,24 @@ This is a draft of the authentication protocol.
 
 We take email as an example but it would be the same for mobile or OAuth/OpenID (mailing would be replaced by SMS and OAuth respectively)
 
-#### Adding users
+#### Adding users by email
 
-After creating the election, the **user** send the list of authorized emails to the authentication server (can be done multiple times).
+After creating the election, the **admin** can use the **authentication server** to invite users by email.
 
 ```json
 {
 	"electionId": electionId,
-	"emails": [
-		"alice@domain1",
-		"bob@domain2"
-	]
+	"email": "alice@domain1"
 }
 ```
 
-The **authentication server** generate a new public key, used to manage those users.
+The **authentication server** generate a identity in behalf of this users.
 
 ```js
 let managerAccount = Account.new()
 let managerId = managerAccount.userId
 
-await knex('managedEmails').insert({
+await knex('users').insert({
 	electionId,
 	emails,
 	managerId,
@@ -41,7 +38,7 @@ res.send({
 })
 ```
 
-The **user** update the election's `adminIds` with the received userId, allowing the server to update  the election.
+_NOTE: If the user already exists, then the server could directly reply with the userId, but then, what to do if that user loose his secret? (ex: login on another device)_
 
 #### Logging in (new user)
 
@@ -67,16 +64,14 @@ If so, the authentification server generate a verification token and send it by 
 app.post("/login", async (req, res) => {
 	let { email, userId, userToken } = req.body
 
+	// TOFIX: Not insert but update? (or other table)
 	await knex('users').insert({
 		email,
 		userId,
 		userToken
 	})
 	
-	let link = "https://email.auth.scrutin.app/verify/"
-	+ userId
-	+ "/"
-	+ userToken
+	let link = `https://email.auth.scrutin.app/verify/${userId}/${userToken}`
 
 	// TODO: Warn the user NOT TO CLICK if he did not made the request
 	sendEmail(email, "Verify your email", `Click here: ${link}`)
@@ -85,17 +80,14 @@ app.post("/login", async (req, res) => {
 })
 ```
 
-When the user click on the link, the authentication server add the new `userId` to `election.voterIds`
-
+Using the token, the voter can now ask the authentication server to emit a vote deleguation to that new userId
 ```js
 app.get("/verify/:userId/:userToken", async (req, res) => {
 	if (verifyUser()) {
-		updateElectionVoters()
+		res.send(deleguateVote(electionId, managerId, userId))
 	}
 })
 ```
-
-The user is redirected to the voting page.
 
 #### Logging in (existing user)
 
@@ -111,17 +103,8 @@ Voter to authentication server:
 
 The server:
 
-```json
-let election = {
-	...election,
-	// set originId if necessary
-	voterIds: Array.concat(voterIds, [userId])
-}
-
-// And add the userId to the election's `voterIds` (if it's not already the case)
-broadcastEvent("election.update", election, managerAccount)
-
-res.send{ status: "verified" })
+```js
+res.send(deleguateVote(electionId, managerId, userId))
 ```
 
 The user is immediatly capable of voting.
