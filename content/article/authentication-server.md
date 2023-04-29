@@ -24,34 +24,28 @@ The **authentication server** generate a manager identity in behalf of the user.
 }
 ```
 
+That ID can be directly added to `election.voterIds`
+
 _If the user already exists, then the server could directly reply with the userId, but then, what to do if that user loose his secret or login on another device?_
 
-#### Logging in (new user)
+#### Logging in
 
-In most case you should receive a link by email, but if not, you can ask an OTP from the **authentication server**
+The server generate an OTP and send it by email.
 
-```json
-query = {
-	"email": email
-}
-response = {} // email sent
-```
-
-If the email is authorized the authentification server generate a verification token and send it by email
-
-By sending the token to the server, alongside an freshly generated userId, the authentication server would then emit a deleguation to that new userId
-
+By proving knowledge of the  OTP, alongside a freshly generated userId (=publicKey),  the **authentication server** will give you a delegation.
 
 ```json
 let account = Account.make()
 query = {
-	"userId": account.userId
+	userToken, // The OTP
+	userId // A freshly generated account
 }
-response = {
+response = Event_.ElectionDelegation.create({
 	"electionId": electionId,
 	"voterId": manager.userId,
-	"delegateId": req.body.userId,
-} // A full event, signed with manager.secret, that can be broadcasted, giving voting right to the new account
+	"delegateId": req.body.userId
+}, manager)
+// The server delegated his voice.
 ```
 
 <!--
