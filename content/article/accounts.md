@@ -17,7 +17,7 @@ The secret allow `userId` to authenticate data using digital signatures.
 
 We use accounts in two case:
 - For voters
-- For election administrators
+- For administrators
 
 <!--
 ### Multi-devices/Switching device

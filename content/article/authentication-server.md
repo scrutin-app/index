@@ -1,6 +1,7 @@
 ---
 title: Authentication server protocol
 date: 2023-04-05
+draft: true
 ---
 
 This is a draft of the authentication protocol.

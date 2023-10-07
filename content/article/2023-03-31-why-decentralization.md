@@ -2,6 +2,7 @@
 title: Why decentralization is useful for e-voting
 description: Advantages over centralized systems
 date: 2023-03-31
+draft: true
 ---
 
 In verifiable elections, the voting list is publicly available.
