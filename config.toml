@@ -10,3 +10,6 @@ title = 'Scrutin'
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[deployment.targets]
+  URL = "s3://bucket?endpoint=garage.deuxfleurs.fr&s3ForcePathStyle=true&region=garage"
